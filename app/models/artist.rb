@@ -8,8 +8,8 @@ def slug
 end
 
 def self.find_by_slug(slug)
-    name = slug.split("-").each { |word| word.capitalize! }.join(" ")
-    result = self.find_by(name: name)
+    name = slug.gsub("-", " ")
+    self.where('lower(name) = ?', name).first
 end
 
 
